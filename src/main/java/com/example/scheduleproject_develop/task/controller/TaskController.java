@@ -35,25 +35,25 @@ public class TaskController {
         return new ResponseEntity<>(taskResponseDtoList, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<TaskResponseDto> findTaskById(@PathVariable Long id){
-        TaskResponseDto taskByIdDto = taskService.findTaskById(id);
+    @GetMapping("/{taskId}")
+    public ResponseEntity<TaskResponseDto> findTaskById(@PathVariable Long taskId){
+        TaskResponseDto taskByIdDto = taskService.findTaskById(taskId);
         return new ResponseEntity<>(taskByIdDto, HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{taskId}")
     public ResponseEntity<Void> updateTask(
-            @PathVariable Long id,
+            @PathVariable Long taskId,
             @RequestBody UpdateTaskRequestDto requestDto
             ){
-        taskService.updateTask(id, requestDto.getTitle(), requestDto.getContents());
+        taskService.updateTask(taskId, requestDto.getTitle(), requestDto.getContents());
         return new ResponseEntity<>(HttpStatus.OK);
 
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable Long id){
-        taskService.deleteTask(id);
+    @DeleteMapping("/{taskId}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Long taskId){
+        taskService.deleteTask(taskId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

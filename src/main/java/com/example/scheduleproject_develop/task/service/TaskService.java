@@ -20,27 +20,27 @@ public class TaskService {
         Task task = new Task(username, title, contents);
         Task savedTask = taskRepository.save(task);
 
-        return new TaskResponseDto(savedTask.getId(), savedTask.getUsername(), savedTask.getTitle(),savedTask.getContents());
+        return new TaskResponseDto(savedTask.getTaskId(), savedTask.getUsername(), savedTask.getTitle(),savedTask.getContents());
     }
 
     public List<TaskResponseDto> findAllTasks() {
         return taskRepository.findAll().stream().map(TaskResponseDto::toDto).toList();
     }
 
-    public TaskResponseDto findTaskById(Long id) {
-        Task findTask = taskRepository.findByIdOrElseThrow(id);
+    public TaskResponseDto findTaskById(Long taskId) {
+        Task findTask = taskRepository.findByIdOrElseThrow(taskId);
 
-        return new TaskResponseDto(findTask.getId(), findTask.getUsername(), findTask.getTitle(),findTask.getContents());
+        return new TaskResponseDto(findTask.getTaskId(), findTask.getUsername(), findTask.getTitle(),findTask.getContents());
     }
 
     @Transactional
-    public void updateTask(Long id, String title, String contents) {
-        Task findTask = taskRepository.findByIdOrElseThrow(id);
+    public void updateTask(Long taskId, String title, String contents) {
+        Task findTask = taskRepository.findByIdOrElseThrow(taskId);
         findTask.updateTask(title, contents);
     }
 
-    public void deleteTask(Long id) {
-        Task findTask = taskRepository.findByIdOrElseThrow(id);
-        taskRepository.deleteById(id);
+    public void deleteTask(Long taskId) {
+        Task findTask = taskRepository.findByIdOrElseThrow(taskId);
+        taskRepository.deleteById(taskId);
     }
 }

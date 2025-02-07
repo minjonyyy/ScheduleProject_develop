@@ -29,21 +29,21 @@ public class UserController {
         return new ResponseEntity<>(allUsersDto, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UserResponseDto> findUserById(@PathVariable Long id){
-        UserResponseDto userByIdDto = userService.findUserById(id);
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserResponseDto> findUserById(@PathVariable Long userId){
+        UserResponseDto userByIdDto = userService.findUserById(userId);
         return new ResponseEntity<>(userByIdDto, HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<UserResponseDto> updateUser(@PathVariable Long id, @RequestBody UserRequestDto requestDto){
-        userService.updateUser(id, requestDto.getUsername(), requestDto.getPassword());
+    @PatchMapping("/{userId}")
+    public ResponseEntity<UserResponseDto> updateUser(@PathVariable Long userId, @RequestBody UserRequestDto requestDto){
+        userService.updateUser(userId, requestDto.getUsername(), requestDto.getPassword());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUserById(@PathVariable Long id){
-        userService.deleteUserById(id);
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> deleteUserById(@PathVariable Long userId){
+        userService.deleteUserById(userId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

@@ -11,7 +11,7 @@ import lombok.Getter;
 public class Task extends BaseEntity {
 
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    private Long taskId;
 
     @Column(nullable = false)
     private String username;

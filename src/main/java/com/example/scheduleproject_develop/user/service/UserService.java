@@ -19,26 +19,26 @@ public class UserService {
         User user = new User(email, username, password);
         User createdUser = userRepository.save(user);
 
-        return new UserResponseDto(createdUser.getId(), createdUser.getUsername());
+        return new UserResponseDto(createdUser.getUserId(), createdUser.getUsername());
     }
 
     public List<UserResponseDto> findAllUsers() {
         return userRepository.findAll().stream().map(UserResponseDto::toDto).toList();
     }
 
-    public UserResponseDto findUserById(Long id) {
-        User findUser = userRepository.findByIdOrElseThrow(id);
-        return new UserResponseDto(findUser.getId(), findUser.getUsername());
+    public UserResponseDto findUserById(Long userId) {
+        User findUser = userRepository.findByIdOrElseThrow(userId);
+        return new UserResponseDto(findUser.getUserId(), findUser.getUsername());
     }
 
     @Transactional
-    public void updateUser(Long id, String username, String password) {
-        User findUser = userRepository.findByIdOrElseThrow(id);
+    public void updateUser(Long userId, String username, String password) {
+        User findUser = userRepository.findByIdOrElseThrow(userId);
         findUser.updateUser(username,password);
     }
 
-    public void deleteUserById(Long id) {
-        User findUser = userRepository.findByIdOrElseThrow(id);
+    public void deleteUserById(Long userId) {
+        User findUser = userRepository.findByIdOrElseThrow(userId);
         userRepository.delete(findUser);
     }
 
