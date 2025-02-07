@@ -1,15 +1,15 @@
 package com.example.scheduleproject_develop.user.controller;
 
-import com.example.scheduleproject_develop.common.entity.Const;
+import com.example.scheduleproject_develop.common.Const;
 import com.example.scheduleproject_develop.user.dto.LoginRequestDto;
 import com.example.scheduleproject_develop.user.dto.LoginResponseDto;
 import com.example.scheduleproject_develop.user.dto.UserResponseDto;
-import com.example.scheduleproject_develop.user.entity.User;
 import com.example.scheduleproject_develop.user.service.LoginService;
 import com.example.scheduleproject_develop.user.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
