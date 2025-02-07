@@ -1,4 +1,4 @@
-package com.example.scheduleproject_develop.user.controller;
+package com.example.scheduleproject_develop.auth.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

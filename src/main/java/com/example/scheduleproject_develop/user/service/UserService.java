@@ -15,12 +15,7 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
 
-    public UserResponseDto save(String email, String username, String password) {
-        User user = new User(email, username, password);
-        User createdUser = userRepository.save(user);
 
-        return new UserResponseDto(createdUser.getUserId(), createdUser.getUsername());
-    }
 
     public List<UserResponseDto> findAllUsers() {
         return userRepository.findAll().stream().map(UserResponseDto::toDto).toList();

@@ -1,4 +1,4 @@
-package com.example.scheduleproject_develop.common.filter;
+package com.example.scheduleproject_develop.common;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;

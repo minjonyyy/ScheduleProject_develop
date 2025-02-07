@@ -1,6 +1,7 @@
-package com.example.scheduleproject_develop.user.service;
+package com.example.scheduleproject_develop.auth.service;
 
-import com.example.scheduleproject_develop.user.dto.LoginResponseDto;
+import com.example.scheduleproject_develop.auth.dto.LoginResponseDto;
+import com.example.scheduleproject_develop.user.dto.UserResponseDto;
 import com.example.scheduleproject_develop.user.entity.User;
 import com.example.scheduleproject_develop.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,13 @@ import org.springframework.web.server.ResponseStatusException;
 public class LoginService {
 
     private final UserRepository userRepository;
+
+    public UserResponseDto signup(String email, String username, String password) {
+        User user = new User(email, username, password);
+        User createdUser = userRepository.save(user);
+
+        return new UserResponseDto(createdUser.getUserId(), createdUser.getUsername());
+    }
 
     public LoginResponseDto login(String email, String passsword){
         User findUser = userRepository.findUserByEmailOrElseThrow(email);
