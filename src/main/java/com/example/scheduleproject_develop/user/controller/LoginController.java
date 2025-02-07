@@ -33,6 +33,7 @@ public class LoginController {
         UserResponseDto loginUser = userService.findUserById(userId);
 
         session.setAttribute(Const.LOGIN_USER, loginUser);
+        session.setAttribute(Const.LOGIN_USER_ID, userId);
 
         return ResponseEntity.ok(loginUser.getUsernamme()+"님 로그인 성공!");
 

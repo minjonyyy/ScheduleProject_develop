@@ -4,6 +4,7 @@ import com.example.scheduleproject_develop.task.dto.CreateTaskRequestDto;
 import com.example.scheduleproject_develop.task.dto.TaskResponseDto;
 import com.example.scheduleproject_develop.task.dto.UpdateTaskRequestDto;
 import com.example.scheduleproject_develop.task.service.TaskService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,10 @@ public class TaskController {
     private final TaskService taskService;
 
     @PostMapping
-    public ResponseEntity<TaskResponseDto> createTask(@RequestBody CreateTaskRequestDto requestDto) {
+    public ResponseEntity<TaskResponseDto> createTask(HttpServletRequest request, @RequestBody CreateTaskRequestDto requestDto) {
         TaskResponseDto taskResponseDto =
                 taskService.createTask(
+                        request,
                         requestDto.getUsername(),
                         requestDto.getTitle(),
                         requestDto.getContents());

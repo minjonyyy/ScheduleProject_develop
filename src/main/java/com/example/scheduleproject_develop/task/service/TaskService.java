@@ -1,8 +1,13 @@
 package com.example.scheduleproject_develop.task.service;
 
+import com.example.scheduleproject_develop.common.Const;
 import com.example.scheduleproject_develop.task.dto.TaskResponseDto;
 import com.example.scheduleproject_develop.task.entity.Task;
 import com.example.scheduleproject_develop.task.repository.TaskRepository;
+import com.example.scheduleproject_develop.user.entity.User;
+import com.example.scheduleproject_develop.user.repository.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,10 +19,16 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TaskService {
     private final TaskRepository taskRepository;
+    private final UserRepository userRepository;
 
-    public TaskResponseDto createTask(String username, String title, String contents) {
+    public TaskResponseDto createTask(HttpServletRequest request, String username, String title, String contents) {
 
-        Task task = new Task(username, title, contents);
+        HttpSession session = request.getSession();
+        Long userId = (Long) session.getAttribute(Const.LOGIN_USER_ID);
+
+        User user = userRepository.findByIdOrElseThrow(userId);
+
+        Task task = new Task(username, title, contents, user);
         Task savedTask = taskRepository.save(task);
 
         return new TaskResponseDto(savedTask.getTaskId(), savedTask.getUsername(), savedTask.getTitle(),savedTask.getContents());
