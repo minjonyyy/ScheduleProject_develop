@@ -1,6 +1,7 @@
 package com.example.scheduleproject_develop.task.entity;
 
 import com.example.scheduleproject_develop.common.entity.BaseEntity;
+import com.example.scheduleproject_develop.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -19,6 +20,10 @@ public class Task extends BaseEntity {
     private String title;
 
     private String contents;
+
+    @ManyToOne
+    @JoinColumn(name="userId")
+    private User user;
 
     public Task() {
     }

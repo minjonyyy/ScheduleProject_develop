@@ -15,8 +15,8 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
 
-    public UserResponseDto save(String username, String password) {
-        User user = new User(username, password);
+    public UserResponseDto save(String email, String username, String password) {
+        User user = new User(email, username, password);
         User createdUser = userRepository.save(user);
 
         return new UserResponseDto(createdUser.getId(), createdUser.getUsername());
