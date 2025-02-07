@@ -1,5 +1,6 @@
 package com.example.scheduleproject_develop.task.dto;
 
+import com.example.scheduleproject_develop.task.entity.Task;
 import lombok.Getter;
 
 @Getter
@@ -15,4 +16,9 @@ public class TaskResponseDto {
         this.title = title;
         this.contents = contents;
     }
+
+    public static TaskResponseDto toDto(Task task) {
+        return new TaskResponseDto(task.getId(), task.getUsername(), task.getTitle(), task.getContents());
+    }
+
 }

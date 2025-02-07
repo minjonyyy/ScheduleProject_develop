@@ -6,6 +6,8 @@ import com.example.scheduleproject_develop.task.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TaskService {
@@ -17,5 +19,9 @@ public class TaskService {
         Task savedTask = taskRepository.save(task);
 
         return new TaskResponseDto(savedTask.getId(), savedTask.getUsername(), savedTask.getTitle(),savedTask.getContents());
+    }
+
+    public List<TaskResponseDto> findAllTasks() {
+        return taskRepository.findAll().stream().map(TaskResponseDto::toDto).toList();
     }
 }
