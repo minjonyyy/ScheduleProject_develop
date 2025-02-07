@@ -2,6 +2,7 @@ package com.example.scheduleproject_develop.task.controller;
 
 import com.example.scheduleproject_develop.task.dto.CreateTaskRequestDto;
 import com.example.scheduleproject_develop.task.dto.TaskResponseDto;
+import com.example.scheduleproject_develop.task.dto.UpdateTaskRequestDto;
 import com.example.scheduleproject_develop.task.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,22 @@ public class TaskController {
         List<TaskResponseDto> taskResponseDtoList = taskService.findAllTasks();
 
         return new ResponseEntity<>(taskResponseDtoList, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TaskResponseDto> findTaskById(@PathVariable Long id){
+        TaskResponseDto taskByIdDto = taskService.findTaskById(id);
+        return new ResponseEntity<>(taskByIdDto, HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> updateTask(
+            @PathVariable Long id,
+            @RequestBody UpdateTaskRequestDto requestDto
+            ){
+        taskService.updateTask(id, requestDto.getTitle(), requestDto.getContents());
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
 }

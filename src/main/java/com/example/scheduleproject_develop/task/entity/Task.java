@@ -28,4 +28,10 @@ public class Task extends BaseEntity {
         this.title = title;
         this.contents = contents;
     }
+
+    //setter
+    public void updateTask(String title, String contents) {
+        this.title = title;
+        this.contents = contents;
+    }
 }
