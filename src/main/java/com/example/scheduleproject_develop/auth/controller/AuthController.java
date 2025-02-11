@@ -63,5 +63,4 @@ public class AuthController {
         return ResponseEntity.ok("로그아웃 되었습니다.");
     }
 
-    //깃 테스트 주석
 }
