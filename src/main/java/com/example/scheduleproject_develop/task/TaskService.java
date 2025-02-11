@@ -8,6 +8,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,5 +53,11 @@ public class TaskService {
     public void deleteTask(Long taskId) {
         Task findTask = taskRepository.findByIdOrElseThrow(taskId);
         taskRepository.delete(findTask);
+    }
+
+    public Page<Task> findTasksByPage(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return taskRepository.findAllByOrderByModifiedAtDesc(pageable);
+
     }
 }
