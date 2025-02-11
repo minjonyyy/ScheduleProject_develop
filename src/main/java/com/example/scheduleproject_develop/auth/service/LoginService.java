@@ -16,6 +16,10 @@ public class LoginService {
     private final UserRepository userRepository;
 
     public UserResponseDto signup(String email, String username, String password) {
+        userRepository.findByEmail(email).ifPresent(user -> {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "이미 존재하는 이메일입니다.");
+        });
+
         User user = new User(email, username, password);
         User createdUser = userRepository.save(user);
 

@@ -32,7 +32,10 @@ public class LoginFilter implements Filter {
             HttpSession session = httpRequest.getSession(false);
 
             if(session == null || session.getId()==null) {
-                throw new RuntimeException("로그인 해주세요");
+                httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                httpResponse.setContentType("application/json; charset=utf-8");
+                httpResponse.getWriter().write("{\"error\":\"로그인 해주세요\"}");
+                return;
             }
 
             log.info("로그인 성공!");

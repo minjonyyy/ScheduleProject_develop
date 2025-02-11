@@ -5,9 +5,11 @@ import com.example.scheduleproject_develop.task.dto.TaskResponseDto;
 import com.example.scheduleproject_develop.task.dto.UpdateTaskRequestDto;
 import com.example.scheduleproject_develop.task.service.TaskService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public class TaskController {
     private final TaskService taskService;
 
     @PostMapping
-    public ResponseEntity<TaskResponseDto> createTask(HttpServletRequest request, @RequestBody CreateTaskRequestDto requestDto) {
+    public ResponseEntity<TaskResponseDto> createTask(HttpServletRequest request, @Valid @RequestBody CreateTaskRequestDto requestDto) {
         TaskResponseDto taskResponseDto =
                 taskService.createTask(
                         request,
@@ -46,7 +48,7 @@ public class TaskController {
     @PatchMapping("/{taskId}")
     public ResponseEntity<Void> updateTask(
             @PathVariable Long taskId,
-            @RequestBody UpdateTaskRequestDto requestDto
+            @Valid @RequestBody UpdateTaskRequestDto requestDto
             ){
         taskService.updateTask(taskId, requestDto.getTitle(), requestDto.getContents());
         return new ResponseEntity<>(HttpStatus.OK);

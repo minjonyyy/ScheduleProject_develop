@@ -11,9 +11,11 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,13 +29,13 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<UserResponseDto> signup(@RequestBody SignupRequestDto requestDto){
+    public ResponseEntity<UserResponseDto> signup(@Valid @RequestBody SignupRequestDto requestDto){
         UserResponseDto userResponseDto = loginService.signup(requestDto.getEmail(), requestDto.getUsername(), requestDto.getPassword());
         return new ResponseEntity<>(userResponseDto, HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequestDto requestDto, HttpServletRequest request) {
+    public ResponseEntity<String> login(@Valid @RequestBody LoginRequestDto requestDto, HttpServletRequest request) {
         LoginResponseDto user = loginService.login(requestDto.getEmail(), requestDto.getPassword());
         Long userId = user.getUserId();
 

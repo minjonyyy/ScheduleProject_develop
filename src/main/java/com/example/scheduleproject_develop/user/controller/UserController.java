@@ -4,9 +4,11 @@ import com.example.scheduleproject_develop.auth.dto.SignupRequestDto;
 import com.example.scheduleproject_develop.user.dto.UserRequestDto;
 import com.example.scheduleproject_develop.user.dto.UserResponseDto;
 import com.example.scheduleproject_develop.user.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +32,7 @@ public class UserController {
     }
 
     @PatchMapping("/{userId}")
-    public ResponseEntity<UserResponseDto> updateUser(@PathVariable Long userId, @RequestBody UserRequestDto requestDto){
+    public ResponseEntity<UserResponseDto> updateUser(@PathVariable Long userId, @Valid @RequestBody UserRequestDto requestDto){
         userService.updateUser(userId, requestDto.getUsername(), requestDto.getPassword());
         return new ResponseEntity<>(HttpStatus.OK);
     }
