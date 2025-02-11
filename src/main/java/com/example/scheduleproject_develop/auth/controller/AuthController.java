@@ -7,7 +7,9 @@ import com.example.scheduleproject_develop.auth.dto.LoginResponseDto;
 import com.example.scheduleproject_develop.user.dto.UserResponseDto;
 import com.example.scheduleproject_develop.auth.service.LoginService;
 import com.example.scheduleproject_develop.user.service.UserService;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -47,11 +49,17 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<String> logout(HttpServletRequest request) {
+    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
         }
+
+        Cookie cookie = new Cookie("JSESSIONID", null);
+        cookie.setMaxAge(0);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
         return ResponseEntity.ok("로그아웃 되었습니다.");
     }
 }
