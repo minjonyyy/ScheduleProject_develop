@@ -1,5 +1,6 @@
 package com.example.scheduleproject_develop.comment;
 
+import com.example.scheduleproject_develop.common.BaseEntity;
 import com.example.scheduleproject_develop.task.Task;
 import com.example.scheduleproject_develop.user.entity.User;
 import jakarta.persistence.*;
@@ -8,7 +9,7 @@ import lombok.Getter;
 @Entity
 @Getter
 @Table(name="comment")
-public class Comment {
+public class Comment extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
