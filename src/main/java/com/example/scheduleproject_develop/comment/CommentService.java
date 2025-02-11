@@ -2,6 +2,7 @@ package com.example.scheduleproject_develop.comment;
 
 import com.example.scheduleproject_develop.comment.dto.CommentRequestDto;
 import com.example.scheduleproject_develop.comment.dto.CommentResponseDto;
+import com.example.scheduleproject_develop.comment.dto.UpdateCommentRequestDto;
 import com.example.scheduleproject_develop.common.Const;
 import com.example.scheduleproject_develop.task.Task;
 import com.example.scheduleproject_develop.task.TaskRepository;
@@ -45,7 +46,7 @@ public class CommentService {
     }
 
     @Transactional
-    public void updateComment(Long id, CommentRequestDto requestDto) {
+    public void updateComment(Long id, UpdateCommentRequestDto requestDto) {
         Comment findComment = commentRepository.findByIdOrElseThrow(id);
 
         findComment.updateComment(requestDto.getContent());

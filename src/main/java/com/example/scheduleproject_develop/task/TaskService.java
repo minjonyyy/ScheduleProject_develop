@@ -49,6 +49,6 @@ public class TaskService {
 
     public void deleteTask(Long taskId) {
         Task findTask = taskRepository.findByIdOrElseThrow(taskId);
-        taskRepository.deleteById(taskId);
+        taskRepository.delete(findTask);
     }
 }

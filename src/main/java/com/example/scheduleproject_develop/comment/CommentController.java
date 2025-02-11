@@ -2,6 +2,7 @@ package com.example.scheduleproject_develop.comment;
 
 import com.example.scheduleproject_develop.comment.dto.CommentRequestDto;
 import com.example.scheduleproject_develop.comment.dto.CommentResponseDto;
+import com.example.scheduleproject_develop.comment.dto.UpdateCommentRequestDto;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,7 @@ public class CommentController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> updateComment(@PathVariable Long id, @RequestBody CommentRequestDto requestDto){
+    public ResponseEntity<Void> updateComment(@PathVariable Long id, @RequestBody UpdateCommentRequestDto requestDto){
         commentService.updateComment(id, requestDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
