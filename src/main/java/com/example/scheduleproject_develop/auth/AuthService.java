@@ -1,4 +1,4 @@
-package com.example.scheduleproject_develop.auth.service;
+package com.example.scheduleproject_develop.auth;
 
 import com.example.scheduleproject_develop.auth.dto.LoginResponseDto;
 import com.example.scheduleproject_develop.config.PasswordEncoder;
@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
-public class LoginService {
+public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;

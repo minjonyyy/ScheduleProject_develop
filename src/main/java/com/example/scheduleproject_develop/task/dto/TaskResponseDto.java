@@ -1,6 +1,6 @@
 package com.example.scheduleproject_develop.task.dto;
 
-import com.example.scheduleproject_develop.task.entity.Task;
+import com.example.scheduleproject_develop.task.Task;
 import lombok.Getter;
 
 @Getter

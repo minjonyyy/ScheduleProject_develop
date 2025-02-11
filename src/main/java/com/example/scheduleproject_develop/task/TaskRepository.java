@@ -1,6 +1,5 @@
-package com.example.scheduleproject_develop.task.repository;
+package com.example.scheduleproject_develop.task;
 
-import com.example.scheduleproject_develop.task.entity.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

@@ -1,4 +1,4 @@
-package com.example.scheduleproject_develop.task.entity;
+package com.example.scheduleproject_develop.task;
 
 import com.example.scheduleproject_develop.common.BaseEntity;
 import com.example.scheduleproject_develop.user.entity.User;

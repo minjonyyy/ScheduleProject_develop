@@ -1,11 +1,10 @@
-package com.example.scheduleproject_develop.auth.controller;
+package com.example.scheduleproject_develop.auth;
 
 import com.example.scheduleproject_develop.auth.dto.SignupRequestDto;
 import com.example.scheduleproject_develop.common.Const;
 import com.example.scheduleproject_develop.auth.dto.LoginRequestDto;
 import com.example.scheduleproject_develop.auth.dto.LoginResponseDto;
 import com.example.scheduleproject_develop.user.dto.UserResponseDto;
-import com.example.scheduleproject_develop.auth.service.LoginService;
 import com.example.scheduleproject_develop.user.service.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,7 +14,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 public class AuthController {
-    private final LoginService loginService;
+    private final AuthService loginService;
     private final UserService userService;
 
     @PostMapping("/signup")

@@ -1,9 +1,7 @@
-package com.example.scheduleproject_develop.task.service;
+package com.example.scheduleproject_develop.task;
 
 import com.example.scheduleproject_develop.common.Const;
 import com.example.scheduleproject_develop.task.dto.TaskResponseDto;
-import com.example.scheduleproject_develop.task.entity.Task;
-import com.example.scheduleproject_develop.task.repository.TaskRepository;
 import com.example.scheduleproject_develop.user.entity.User;
 import com.example.scheduleproject_develop.user.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

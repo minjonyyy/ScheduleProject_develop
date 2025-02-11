@@ -1,15 +1,13 @@
-package com.example.scheduleproject_develop.task.controller;
+package com.example.scheduleproject_develop.task;
 
 import com.example.scheduleproject_develop.task.dto.CreateTaskRequestDto;
 import com.example.scheduleproject_develop.task.dto.TaskResponseDto;
 import com.example.scheduleproject_develop.task.dto.UpdateTaskRequestDto;
-import com.example.scheduleproject_develop.task.service.TaskService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
