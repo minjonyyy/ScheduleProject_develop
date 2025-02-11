@@ -10,8 +10,12 @@ import com.example.scheduleproject_develop.user.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -33,5 +37,23 @@ public class CommentService {
         Comment saved = commentRepository.save(comment);
 
         return new CommentResponseDto(saved.getId(), saved.getContent());
+    }
+
+    public List<CommentResponseDto> findAllComments() {
+
+        return commentRepository.findAll().stream().map(CommentResponseDto::toDto).toList();
+    }
+
+    @Transactional
+    public void updateComment(Long id, CommentRequestDto requestDto) {
+        Comment findComment = commentRepository.findByIdOrElseThrow(id);
+
+        findComment.updateComment(requestDto.getContent());
+    }
+
+    public void deleteCommet(Long id) {
+        Comment findComment = commentRepository.findByIdOrElseThrow(id);
+        commentRepository.delete(findComment);
+
     }
 }

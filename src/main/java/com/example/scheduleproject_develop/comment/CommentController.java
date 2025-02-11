@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/comments")
@@ -18,7 +20,27 @@ public class CommentController {
     public ResponseEntity<CommentResponseDto> createComment(HttpServletRequest request, @PathVariable Long taskId, @RequestBody CommentRequestDto requestDto){
         CommentResponseDto commentResponseDto = commentService.createComment(request, taskId, requestDto);
         return new ResponseEntity<>(commentResponseDto, HttpStatus.CREATED);
-
     }
+
+    @GetMapping
+    public ResponseEntity<List<CommentResponseDto>> findAllComments(){
+        List<CommentResponseDto> allComments = commentService.findAllComments();
+        return new ResponseEntity<>(allComments, HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> updateComment(@PathVariable Long id, @RequestBody CommentRequestDto requestDto){
+        commentService.updateComment(id, requestDto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteComment(@PathVariable Long id){
+        commentService.deleteCommet(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+
 
 }
