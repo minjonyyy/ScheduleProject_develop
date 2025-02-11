@@ -1,0 +1,35 @@
+package com.example.scheduleproject_develop.comment;
+
+import com.example.scheduleproject_develop.task.Task;
+import com.example.scheduleproject_develop.user.entity.User;
+import jakarta.persistence.*;
+import lombok.Getter;
+
+@Entity
+@Getter
+@Table(name="comment")
+public class Comment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String content;
+
+    @ManyToOne @JoinColumn(name="taskId")
+    private Task task;
+
+    @ManyToOne @JoinColumn(name="userId")
+    private User user;
+
+    public Comment(String content, Task task, User user) {
+        this.content = content;
+        this.task = task;
+        this.user = user;
+    }
+
+    public Comment() {
+
+    }
+}
