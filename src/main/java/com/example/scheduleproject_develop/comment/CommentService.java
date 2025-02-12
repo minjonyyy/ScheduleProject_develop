@@ -65,4 +65,11 @@ public class CommentService {
         List<Comment> commentsById = commentRepository.findCommentsById(taskId);
         return commentsById.stream().map(CommentResponseDto::toDto).collect(Collectors.toList());
     }
+
+//    public void deleteCommentByUserID(Long userId) {
+//        List<Comment> commentByUserId = commentRepository.findCommentByUser_UserId(userId);
+//        commentRepository.deleteAll(commentByUserId);
+//
+//    }
+
 }

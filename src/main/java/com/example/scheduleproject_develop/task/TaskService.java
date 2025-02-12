@@ -100,4 +100,9 @@ public class TaskService {
     }
 
 
+//    public void deleteTasksByUserId(Long userId) {
+//        List<Task> taskByUserId = taskRepository.findTaskByUser_UserId(userId);
+//        taskRepository.deleteAll(taskByUserId);
+//    }
+
 }

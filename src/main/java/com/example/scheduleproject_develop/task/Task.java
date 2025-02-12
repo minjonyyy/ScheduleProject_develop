@@ -4,6 +4,8 @@ import com.example.scheduleproject_develop.common.BaseEntity;
 import com.example.scheduleproject_develop.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
 @Entity
@@ -24,7 +26,8 @@ public class Task extends BaseEntity {
     private Long numOfComments;
 
     @ManyToOne
-    @JoinColumn(name="userId")
+    @JoinColumn(name="userId", nullable = false, foreignKey = @ForeignKey(name = "fk_task_user", value = ConstraintMode.CONSTRAINT))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
     public Task() {
