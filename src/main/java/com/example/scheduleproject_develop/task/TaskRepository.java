@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
     default Task findByIdOrElseThrow(Long taskId) {
@@ -13,4 +15,6 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     }
 
     Page<Task> findAllByOrderByModifiedAtDesc(Pageable pageable);
+
+    List<Task> findByTitleContaining(String keyword);
 }

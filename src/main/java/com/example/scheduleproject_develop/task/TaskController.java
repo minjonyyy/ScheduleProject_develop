@@ -39,7 +39,7 @@ public class TaskController {
     }
 
     @GetMapping("/{taskId}")
-    public ResponseEntity<TaskResponseDto> findTaskById(@PathVariable Long taskId){
+    public ResponseEntity<TaskResponseDto> findTaskById(@PathVariable("taskId") Long taskId){
         TaskResponseDto taskByIdDto = taskService.findTaskById(taskId);
         return new ResponseEntity<>(taskByIdDto, HttpStatus.OK);
     }
@@ -67,6 +67,12 @@ public class TaskController {
     ){
         Page<Task> tasksByPage = taskService.findTasksByPage(page, size);
         return new ResponseEntity<>(tasksByPage, HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<TaskResponseDto>> searchTask(@RequestParam String keyword){
+        List<TaskResponseDto> taskResponseDtoList = taskService.searchTask(keyword);
+        return new ResponseEntity<>(taskResponseDtoList, HttpStatus.OK);
     }
 
 }
