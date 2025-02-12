@@ -4,6 +4,7 @@ import com.example.scheduleproject_develop.comment.dto.CommentRequestDto;
 import com.example.scheduleproject_develop.comment.dto.CommentResponseDto;
 import com.example.scheduleproject_develop.comment.dto.UpdateCommentRequestDto;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping("/{taskId}")
-    public ResponseEntity<CommentResponseDto> createComment(HttpServletRequest request, @PathVariable Long taskId, @RequestBody CommentRequestDto requestDto){
+    public ResponseEntity<CommentResponseDto> createComment(HttpServletRequest request, @PathVariable Long taskId, @Valid @RequestBody CommentRequestDto requestDto){
         CommentResponseDto commentResponseDto = commentService.createComment(request, taskId, requestDto);
         return new ResponseEntity<>(commentResponseDto, HttpStatus.CREATED);
     }
@@ -37,7 +38,7 @@ public class CommentController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteComment(@PathVariable Long id){
-        commentService.deleteCommet(id);
+        commentService.deleteComment(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

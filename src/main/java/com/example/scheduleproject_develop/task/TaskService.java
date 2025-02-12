@@ -29,6 +29,7 @@ public class TaskService {
     private final CommentRepository commentRepository;
     private final CommentService commentService;
 
+    @Transactional
     public TaskResponseDto createTask(HttpServletRequest request, String username, String title, String contents) {
 
         HttpSession session = request.getSession();
@@ -77,13 +78,14 @@ public class TaskService {
         findTask.updateTask(title, contents);
     }
 
+    @Transactional
     public void deleteTask(Long id) {
         Task findTask = taskRepository.findByIdOrElseThrow(id);
         taskRepository.delete(findTask);
     }
 
-    public Page<Task> findTasksByPage(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+    public Page<Task> findTasksByPage(Pageable pageable) {
+
         return taskRepository.findAllByOrderByModifiedAtDesc(pageable);
 
     }

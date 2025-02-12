@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -65,7 +67,8 @@ public class TaskController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size
     ){
-        Page<Task> tasksByPage = taskService.findTasksByPage(page, size);
+        Pageable pageable = PageRequest.of(page, size); //pageable 객체 생성하여 넘기기
+        Page<Task> tasksByPage = taskService.findTasksByPage(pageable);
         return new ResponseEntity<>(tasksByPage, HttpStatus.OK);
     }
 

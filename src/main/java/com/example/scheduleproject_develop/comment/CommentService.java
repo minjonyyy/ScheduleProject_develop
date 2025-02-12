@@ -54,7 +54,8 @@ public class CommentService {
         findComment.updateComment(requestDto.getContent());
     }
 
-    public void deleteCommet(Long id) {
+    @Transactional
+    public void deleteComment(Long id) {
         Comment findComment = commentRepository.findByIdOrElseThrow(id);
         commentRepository.delete(findComment);
 
