@@ -92,4 +92,10 @@ public class TaskService {
         return taskRepository.findByTitleContaining(keyword).stream().map(TaskResponseDto::toDto).collect(Collectors.toList());
 
     }
+
+    public List<TaskResponseDto> searchTaskByUser(String username){
+        return taskRepository.findByUsername(username).stream().map(TaskResponseDto::toDto).collect(Collectors.toList());
+    }
+
+
 }

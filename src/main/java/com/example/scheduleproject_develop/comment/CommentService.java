@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -57,5 +58,10 @@ public class CommentService {
         Comment findComment = commentRepository.findByIdOrElseThrow(id);
         commentRepository.delete(findComment);
 
+    }
+
+    public List<CommentResponseDto> findCommentsByTaskId(Long taskId) {
+        List<Comment> commentsById = commentRepository.findCommentsById(taskId);
+        return commentsById.stream().map(CommentResponseDto::toDto).collect(Collectors.toList());
     }
 }

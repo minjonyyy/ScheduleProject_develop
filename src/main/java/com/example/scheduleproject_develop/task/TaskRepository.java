@@ -17,4 +17,6 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     Page<Task> findAllByOrderByModifiedAtDesc(Pageable pageable);
 
     List<Task> findByTitleContaining(String keyword);
+
+    List<Task> findByUsername(String username);
 }

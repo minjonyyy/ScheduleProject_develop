@@ -41,6 +41,12 @@ public class CommentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("{taskId}")
+    public ResponseEntity<List<CommentResponseDto>> findCommentsByTaskId(@PathVariable Long taskId){
+        List<CommentResponseDto> commentsByTaskId = commentService.findCommentsByTaskId(taskId);
+        return new ResponseEntity<>(commentsByTaskId, HttpStatus.OK);
+    }
+
 
 
 }

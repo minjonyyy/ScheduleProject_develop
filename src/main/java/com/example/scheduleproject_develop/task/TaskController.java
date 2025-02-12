@@ -75,4 +75,10 @@ public class TaskController {
         return new ResponseEntity<>(taskResponseDtoList, HttpStatus.OK);
     }
 
+    @GetMapping("/username")
+    public ResponseEntity<List<TaskResponseDto>> searchTaskByUser(@RequestParam String username){
+        List<TaskResponseDto> taskResponseDtoList = taskService.searchTaskByUser(username);
+        return new ResponseEntity<>(taskResponseDtoList, HttpStatus.OK);
+    }
+
 }
