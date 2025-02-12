@@ -12,7 +12,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
         return findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = "+id));
     }
 
-    List<Comment> findCommentsById(Long id);
+    List<Comment> findCommentsByTask_Id(Long id);
 
 //    List<Comment> findCommentByUser_UserId(Long userId);
 }

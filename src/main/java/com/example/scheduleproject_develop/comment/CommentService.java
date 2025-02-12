@@ -62,7 +62,7 @@ public class CommentService {
     }
 
     public List<CommentResponseDto> findCommentsByTaskId(Long taskId) {
-        List<Comment> commentsById = commentRepository.findCommentsById(taskId);
+        List<Comment> commentsById = commentRepository.findCommentsByTask_Id(taskId);
         return commentsById.stream().map(CommentResponseDto::toDto).collect(Collectors.toList());
     }
 
