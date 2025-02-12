@@ -18,10 +18,10 @@ public class Comment extends BaseEntity {
     @Column(nullable = false)
     private String content;
 
-    @ManyToOne @JoinColumn(name="taskId")
+    @ManyToOne @JoinColumn(name="task_id")
     private Task task;
 
-    @ManyToOne @JoinColumn(name="userId")
+    @ManyToOne @JoinColumn(name="user_id")
     private User user;
 
     public Comment(String content, Task task, User user) {

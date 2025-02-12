@@ -11,7 +11,7 @@ import lombok.Getter;
 public class Task extends BaseEntity {
 
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long taskId;
+    private Long id;
 
     @Column(nullable = false)
     private String username;
@@ -21,6 +21,8 @@ public class Task extends BaseEntity {
 
     private String contents;
 
+    private Long numOfComments;
+
     @ManyToOne
     @JoinColumn(name="userId")
     private User user;
@@ -28,10 +30,11 @@ public class Task extends BaseEntity {
     public Task() {
     }
 
-    public Task(String username, String title, String contents, User user) {
+    public Task(String username, String title, String contents, Long numOfComments, User user) {
         this.username = username;
         this.title = title;
         this.contents = contents;
+        this.numOfComments = numOfComments;
         this.user = user;
     }
 
@@ -39,5 +42,9 @@ public class Task extends BaseEntity {
     public void updateTask(String title, String contents) {
         this.title = title;
         this.contents = contents;
+    }
+
+    public void updateNumOfComments(Long numOfComments) {
+        this.numOfComments = numOfComments;
     }
 }

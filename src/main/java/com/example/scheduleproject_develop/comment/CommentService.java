@@ -23,6 +23,7 @@ public class CommentService {
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
 
+    @Transactional
     public CommentResponseDto createComment(HttpServletRequest request, Long taskId, CommentRequestDto requestDto) {
 
         HttpSession session = request.getSession();
@@ -35,7 +36,9 @@ public class CommentService {
         Comment comment = new Comment(requestDto.getContent(), findTask, user);
         Comment saved = commentRepository.save(comment);
 
-        return new CommentResponseDto(saved.getId(), saved.getContent());
+        findTask.updateNumOfComments(findTask.getNumOfComments() + 1);
+
+        return CommentResponseDto.toDto(saved);
     }
 
     public List<CommentResponseDto> findAllComments() {

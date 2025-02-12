@@ -13,5 +13,4 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     }
 
     Page<Task> findAllByOrderByModifiedAtDesc(Pageable pageable);
-
 }
