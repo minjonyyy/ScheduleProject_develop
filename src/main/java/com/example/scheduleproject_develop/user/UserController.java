@@ -1,14 +1,11 @@
-package com.example.scheduleproject_develop.user.controller;
+package com.example.scheduleproject_develop.user;
 
-import com.example.scheduleproject_develop.auth.dto.SignupRequestDto;
 import com.example.scheduleproject_develop.user.dto.UserRequestDto;
 import com.example.scheduleproject_develop.user.dto.UserResponseDto;
-import com.example.scheduleproject_develop.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

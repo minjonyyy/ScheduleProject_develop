@@ -5,7 +5,7 @@ import com.example.scheduleproject_develop.common.Const;
 import com.example.scheduleproject_develop.auth.dto.LoginRequestDto;
 import com.example.scheduleproject_develop.auth.dto.LoginResponseDto;
 import com.example.scheduleproject_develop.user.dto.UserResponseDto;
-import com.example.scheduleproject_develop.user.service.UserService;
+import com.example.scheduleproject_develop.user.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

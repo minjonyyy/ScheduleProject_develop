@@ -2,7 +2,7 @@ package com.example.scheduleproject_develop.comment;
 
 import com.example.scheduleproject_develop.common.BaseEntity;
 import com.example.scheduleproject_develop.task.Task;
-import com.example.scheduleproject_develop.user.entity.User;
+import com.example.scheduleproject_develop.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 

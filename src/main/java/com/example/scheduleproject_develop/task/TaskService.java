@@ -2,8 +2,8 @@ package com.example.scheduleproject_develop.task;
 
 import com.example.scheduleproject_develop.common.Const;
 import com.example.scheduleproject_develop.task.dto.TaskResponseDto;
-import com.example.scheduleproject_develop.user.entity.User;
-import com.example.scheduleproject_develop.user.repository.UserRepository;
+import com.example.scheduleproject_develop.user.User;
+import com.example.scheduleproject_develop.user.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;

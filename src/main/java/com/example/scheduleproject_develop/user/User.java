@@ -1,4 +1,4 @@
-package com.example.scheduleproject_develop.user.entity;
+package com.example.scheduleproject_develop.user;
 
 import com.example.scheduleproject_develop.common.BaseEntity;
 import jakarta.persistence.*;

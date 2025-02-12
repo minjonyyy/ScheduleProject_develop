@@ -1,13 +1,10 @@
-package com.example.scheduleproject_develop.user.service;
+package com.example.scheduleproject_develop.user;
 
 import com.example.scheduleproject_develop.user.dto.UserResponseDto;
-import com.example.scheduleproject_develop.user.entity.User;
-import com.example.scheduleproject_develop.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.beans.Transient;
 import java.util.List;
 
 @Service

@@ -6,14 +6,12 @@ import com.example.scheduleproject_develop.comment.dto.UpdateCommentRequestDto;
 import com.example.scheduleproject_develop.common.Const;
 import com.example.scheduleproject_develop.task.Task;
 import com.example.scheduleproject_develop.task.TaskRepository;
-import com.example.scheduleproject_develop.user.entity.User;
-import com.example.scheduleproject_develop.user.repository.UserRepository;
+import com.example.scheduleproject_develop.user.User;
+import com.example.scheduleproject_develop.user.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
