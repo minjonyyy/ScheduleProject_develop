@@ -3,10 +3,14 @@ package com.example.scheduleproject_develop.user;
 import com.example.scheduleproject_develop.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 @Getter
 @Entity
 @Table(name="user")
+@SQLDelete(sql = "UPDATE user SET deleted = true WHERE user_id = ?")
+@SQLRestriction("deleted = false")
 public class User extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

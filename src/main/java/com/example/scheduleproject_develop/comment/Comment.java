@@ -5,12 +5,17 @@ import com.example.scheduleproject_develop.task.Task;
 import com.example.scheduleproject_develop.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
+
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 @Entity
 @Getter
 @Table(name="comment")
+@SQLDelete(sql = "UPDATE comment SET deleted = true WHERE id = ?")
+@SQLRestriction("deleted = false")
 public class Comment extends BaseEntity {
 
     @Id
@@ -20,12 +25,12 @@ public class Comment extends BaseEntity {
     @Column(nullable = false)
     private String content;
 
-    @ManyToOne @JoinColumn(name="task_id", nullable = false, foreignKey = @ForeignKey(name = "fk_comment_task", value = ConstraintMode.CONSTRAINT))
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name="task_id", nullable = true) @OnDelete(action = OnDeleteAction.SET_NULL)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
     private Task task;
 
-    @ManyToOne @JoinColumn(name="user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_comment_user", value = ConstraintMode.CONSTRAINT))
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name="user_id", nullable = true) @OnDelete(action = OnDeleteAction.SET_NULL)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
     public Comment(String content, Task task, User user) {

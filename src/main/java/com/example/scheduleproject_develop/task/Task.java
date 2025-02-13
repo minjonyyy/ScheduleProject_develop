@@ -6,10 +6,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 @Getter
 @Entity
 @Table(name="task")
+@SQLDelete(sql = "UPDATE task SET deleted = true WHERE id = ?")
+@SQLRestriction("deleted = false")
 public class Task extends BaseEntity {
 
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -25,9 +29,9 @@ public class Task extends BaseEntity {
 
     private Long numOfComments;
 
-    @ManyToOne
-    @JoinColumn(name="userId", nullable = false, foreignKey = @ForeignKey(name = "fk_task_user", value = ConstraintMode.CONSTRAINT))
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name="userId", nullable = true) @OnDelete(action = OnDeleteAction.SET_NULL)
     private User user;
 
     public Task() {

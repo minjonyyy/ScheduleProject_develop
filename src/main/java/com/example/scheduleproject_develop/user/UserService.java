@@ -29,6 +29,7 @@ public class UserService {
         findUser.updateUser(username,password);
     }
 
+    @Transactional
     public void deleteUserById(Long userId) {
         User findUser = userRepository.findByIdOrElseThrow(userId);
         userRepository.delete(findUser);
