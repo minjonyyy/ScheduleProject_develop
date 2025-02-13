@@ -71,11 +71,6 @@ public class AuthController {
             session.invalidate();
         }
 
-        Cookie cookie = new Cookie("JSESSIONID", null);
-        cookie.setMaxAge(0);
-        cookie.setPath("/");
-        response.addCookie(cookie);
-
         return ResponseEntity.ok("로그아웃 되었습니다.");
     }
 

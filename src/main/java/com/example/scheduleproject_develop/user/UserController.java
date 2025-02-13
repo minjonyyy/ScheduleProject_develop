@@ -55,11 +55,6 @@ public class UserController {
             session.invalidate();
         }
 
-        Cookie cookie = new Cookie("JSESSIONID", null);
-        cookie.setMaxAge(0);
-        cookie.setPath("/");
-        response.addCookie(cookie);
-
         return new ResponseEntity<>(HttpStatus.NO_CONTENT); //삭제 성공
     }
 
